@@ -174,3 +174,11 @@ def test_document_extraction_creates_well_and_events(client, engineer):
     assert found["total"] >= 4
     layers = client.get("/api/map/layers", headers=engineer).json()
     assert any(w["name"] == "HGJ-77" for w in layers["wells"])
+
+
+def test_simulator_starts_and_moves_driller(client, driller):
+    r = client.post("/api/tracking/simulator/start", json={}, headers=driller)
+    assert r.status_code == 200 and r.json()["running"] is True
+    assert client.get("/api/tracking/simulator/status", headers=driller).json()["running"] is True
+    r = client.post("/api/tracking/simulator/stop", json={}, headers=driller)
+    assert r.status_code == 200 and r.json()["running"] is False

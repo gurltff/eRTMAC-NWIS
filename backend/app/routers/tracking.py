@@ -40,7 +40,7 @@ def _target(body: SimIn, user: m.User) -> int:
 
 
 @router.post("/api/tracking/simulator/start")
-def sim_start(body: SimIn, user: m.User = Depends(current_user), db: Session = Depends(get_db)):
+async def sim_start(body: SimIn, user: m.User = Depends(current_user), db: Session = Depends(get_db)):
     uid = _target(body, user)
     target = db.get(m.User, uid)
     if not target or not target.driller or not allowed_zone(target.driller):
@@ -50,7 +50,7 @@ def sim_start(body: SimIn, user: m.User = Depends(current_user), db: Session = D
 
 
 @router.post("/api/tracking/simulator/stop")
-def sim_stop(body: SimIn, user: m.User = Depends(current_user)):
+async def sim_stop(body: SimIn, user: m.User = Depends(current_user)):
     uid = _target(body, user)
     simulators.stop(uid)
     return {"running": False, "user_id": uid}

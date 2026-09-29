@@ -92,7 +92,7 @@ export default function FieldHome() {
         </div>
         <div className="row gap-6"><ThemeButton /><button className="icon-btn" onClick={() => nav('/field/wells')} aria-label="Search wells"><Search size={17} /></button></div>
       </div>
-      <SampleBadge />
+      <div><SampleBadge /></div>
 
       {f.well && (
         <ActiveWellCard well={f.well} analysis={a} depth={f.depth} compact onOpen={() => nav('/field/wells')} openLabel="Continue drilling brief" />
