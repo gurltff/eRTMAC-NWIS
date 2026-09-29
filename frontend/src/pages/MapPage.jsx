@@ -91,7 +91,7 @@ export default function MapPage() {
         <div className="map-overlay bl" style={{ maxWidth: 230 }}>
           <Legend title="Map key" items={[
             ...Object.values(WELL_STYLE).map((s) => ({ label: s.label, color: s.color })),
-            { label: 'Candidate site', color: '#2b2623', shape: 'diamond' },
+            { label: 'Candidate site', color: 'var(--ink)', shape: 'diamond' },
             { label: 'Untapped spot (model)', color: '#eda100' },
             { label: ZONE_STYLE.protected_area.label, color: ZONE_STYLE.protected_area.color, shape: 'area' },
             { label: ZONE_STYLE.reserved_forest.label, color: ZONE_STYLE.reserved_forest.color, shape: 'area' },

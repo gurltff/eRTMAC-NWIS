@@ -1,7 +1,8 @@
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { useEffect, useMemo } from 'react'
-import { Circle, CircleMarker, MapContainer, Marker, Polygon, Polyline, Rectangle, TileLayer, Tooltip, useMap, useMapEvents } from 'react-leaflet'
+import { useEffect, useMemo, useState } from 'react'
+import { api } from '../api/client'
+import { Circle, CircleMarker, MapContainer, Marker, Pane, Polygon, Polyline, Rectangle, TileLayer, Tooltip, useMap, useMapEvents } from 'react-leaflet'
 import { useTheme } from '../context/ThemeContext'
 import { fmt } from '../lib/util'
 
@@ -17,10 +18,46 @@ export function BaseMap({ center = ASSAM_CENTER, zoom = 9, children, onClick, st
   const { resolved } = useTheme()
   return (
     <MapContainer center={center} zoom={zoom} className={className} style={{ height: '100%', width: '100%', ...style }} zoomControl preferCanvas>
-      <TileLayer key={resolved} url={TILES[resolved]} attribution={ATTR} subdomains="abcd" maxZoom={19} />
+      <TileLayer key={resolved} url={TILES[resolved]} attribution={ATTR} subdomains="abcd" maxZoom={19} eventHandlers={{ tileerror: markTilesFailed }} />
+      <FallbackBase />
       {onClick && <ClickHandler onClick={onClick} />}
       {children}
     </MapContainer>
+  )
+}
+
+// If the basemap tiles can't load (offline, or a host that blocks external images),
+// draw a simple basemap from the app's own layers: geology, rivers and field names.
+let tilesFailed = false
+const failListeners = new Set()
+function markTilesFailed() {
+  if (tilesFailed) return
+  tilesFailed = true
+  failListeners.forEach((fn) => fn(true))
+}
+let baseCache = null
+function FallbackBase() {
+  const [failed, setFailed] = useState(tilesFailed)
+  const [base, setBase] = useState(baseCache)
+  useEffect(() => { failListeners.add(setFailed); return () => failListeners.delete(setFailed) }, [])
+  useEffect(() => {
+    if (failed && !base) api('/api/map/layers').then((l) => { baseCache = l; setBase(l) }).catch(() => {})
+  }, [failed, base])
+  if (!failed || !base) return null
+  return (
+    <Pane name="fallback-base" style={{ zIndex: 250 }}>
+      {base.geology.map((g) => (
+        <Polygon key={`g${g.id}`} positions={g.polygon} interactive={false}
+          pathOptions={{ stroke: false, fillColor: g.rock_class === 'alluvium' ? '#e6dcc8' : g.rock_class === 'metamorphic' ? '#cdbfa6' : '#d8c7a4', fillOpacity: 0.55 }} />
+      ))}
+      {base.rivers.map((r) => (
+        <Polyline key={r.name} positions={r.line} interactive={false} pathOptions={{ color: '#7fa7c9', weight: r.name === 'Brahmaputra' ? 5 : 3, opacity: 0.8 }} />
+      ))}
+      {base.fields.map((f) => (
+        <Marker key={`f${f.id}`} position={[f.lat, f.lon]} interactive={false}
+          icon={L.divIcon({ className: '', iconSize: [120, 16], iconAnchor: [-8, 20], html: `<span style="font:500 11px Inter,system-ui,sans-serif;color:#6b5f52;white-space:nowrap">${f.name}</span>` })} />
+      ))}
+    </Pane>
   )
 }
 

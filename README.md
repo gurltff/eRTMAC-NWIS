@@ -12,6 +12,11 @@ live geotag tracking with range checks, an offset-well alert engine and AI docum
 - **Frontend:** React + Vite, Leaflet (CARTO basemaps), Recharts, light and dark themes
 - **Tests:** 35 pytest tests (geometry, trajectory, breach detection, alert engine, main API routes, websocket, extraction)
 
+**Live demo (browser-only build):** https://claude.ai/artifact/82Wddt5F3s9UpK7aMoSCEs
+(private until shared from its Share menu). A GitHub Pages copy publishes automatically from
+`.github/workflows/pages.yml` once Pages is switched on (Settings → Pages → Source: **GitHub Actions**) at
+`https://gurltff.github.io/eRTMAC-NWIS/`. See section 7 for what the hosted build does differently.
+
 ---
 
 ## 1. Run it locally (two commands)
@@ -179,7 +184,9 @@ build: API calls are answered **inside the browser** by `frontend/src/demo/`, us
   Python results);
 - `pdf.js` to read PDFs, and in-browser timers for the tracking and drilling simulators.
 
-Changes you make there (registrations, approvals, breaches) are saved only in your own browser. For the full
+Changes you make there (registrations, approvals, breaches) are saved only in your own browser. If the map
+tiles can't load (offline, or a host that blocks external images), the map draws a simple basemap from the
+app's own geology, river and field layers instead. For the full
 system (real backend, Claude extraction, OCR, retraining), run it locally as in section 1.
 
 To rebuild the hosted version: `cd backend && python -m scripts.export_demo && cd ../frontend && npm run build:demo`.
