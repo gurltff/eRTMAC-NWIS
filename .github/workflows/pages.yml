@@ -1,5 +1,5 @@
 # Publishes the static browser demo to GitHub Pages.
-# One-time setup: repo Settings → Pages → Source: "GitHub Actions".
+# If the run fails at configure-pages: repo Settings → Pages → Source: "GitHub Actions", then re-run.
 name: Deploy demo to GitHub Pages
 on:
   push:
@@ -21,6 +21,7 @@ jobs:
       - run: npm ci && npm run build:demo
         working-directory: frontend
       - uses: actions/configure-pages@v5
+        with: { enablement: true }
       - uses: actions/upload-pages-artifact@v3
         with: { path: frontend/dist }
       - id: deployment
