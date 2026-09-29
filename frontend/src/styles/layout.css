@@ -24,7 +24,7 @@
 }
 
 /* Map page */
-.map-page { position: relative; height: calc(100vh - 110px); min-height: 520px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.map-page { position: relative; height: calc(100vh - 200px); min-height: 480px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
 .map-overlay { position: absolute; z-index: 1000; }
 .map-overlay.tl { top: 14px; left: 56px; right: 14px; pointer-events: none; }
 .map-overlay.tl > * { pointer-events: auto; }
@@ -74,3 +74,27 @@
 .g-map { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
 .g-side { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); }
 @media (max-width: 1000px) { .g-map, .g-side { grid-template-columns: minmax(0, 1fr); } }
+
+/* Built-in basemap labels */
+.bm-label { white-space: nowrap; transform: translate(-50%, -50%); pointer-events: none; font-family: var(--sans);
+  text-shadow: 0 0 3px var(--halo), 0 0 3px var(--halo), 0 0 2px var(--halo); }
+.bm-country { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.bm-state { font-size: 11px; font-style: italic; opacity: .8; }
+.bm-city { font-size: 11px; font-weight: 500; transform: translate(-4px, -50%); }
+.bm-city::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: currentColor; margin-right: 5px; vertical-align: middle; opacity: .8; }
+.bm-capital { font-weight: 600; }
+
+/* "Where is the data" callout at country scale */
+.region-callout { position: relative; display: flex; align-items: center; gap: 10px; transform: translate(-50%, calc(-100% - 12px)); white-space: nowrap; cursor: pointer;
+  background: var(--card); color: var(--ink); border: 1px solid var(--line-2); border-radius: 14px; padding: 8px 12px; box-shadow: var(--shadow-lg);
+  font: 12px/1.35 var(--sans); }
+.region-callout span { color: var(--muted); font-size: 11px; }
+.region-callout .pulse-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--s2); box-shadow: 0 0 0 0 rgba(235,104,52,.6); animation: calloutPing 1.8s infinite; flex: none; }
+@keyframes calloutPing { 0% { box-shadow: 0 0 0 0 rgba(235,104,52,.55); } 100% { box-shadow: 0 0 0 14px rgba(235,104,52,0); } }
+@media (prefers-reduced-motion: reduce) { .region-callout .pulse-dot, .driller-icon .ring { animation: none; } }
+
+.view-buttons { position: absolute; z-index: 1000; left: 12px; bottom: 26px; display: flex; gap: 6px; flex-wrap: wrap; }
+.map-page .view-buttons { left: 50%; transform: translateX(-50%); bottom: 22px; }
+@media (max-width: 720px) { .map-page .view-buttons { left: 12px; transform: none; bottom: auto; top: 96px; } }
+.region-callout::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 12px; height: 12px; background: var(--card);
+  border-right: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); transform: translateX(-50%) rotate(45deg); }

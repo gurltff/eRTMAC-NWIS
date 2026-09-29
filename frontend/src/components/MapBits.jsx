@@ -1,68 +1,111 @@
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { useEffect, useMemo, useState } from 'react'
-import { api } from '../api/client'
-import { Circle, CircleMarker, MapContainer, Marker, Pane, Polygon, Polyline, Rectangle, TileLayer, Tooltip, useMap, useMapEvents } from 'react-leaflet'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import VectorBasemap from './VectorBasemap'
+import { Circle, CircleMarker, MapContainer, Marker, Polygon, Polyline, Rectangle, TileLayer, Tooltip, useMap, useMapEvents } from 'react-leaflet'
 import { useTheme } from '../context/ThemeContext'
 import { fmt } from '../lib/util'
 
 export const ASSAM_CENTER = [27.2, 95.05]
+export const INDIA_VIEW = { center: [22.8, 82.5], zoom: 5 }
+export const WORLD_VIEW = { center: [20, 40], zoom: 2 }
+export const ASSAM_VIEW = { center: [27.15, 94.95], zoom: 9 }
 
 const TILES = {
   light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
   dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
 }
-const ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+const ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> · Natural Earth'
+const WORLD_BOUNDS = [[-82, -185], [85, 185]]
+
+// Online tiles are the normal basemap. If they can't load (offline, or a host that
+// blocks external images) the built-in Natural Earth basemap takes over.
+const tileState = { loads: 0, errors: 0, failed: false }
+const failListeners = new Set()
+function onTileLoad() { tileState.loads++ }
+function onTileError() {
+  tileState.errors++
+  if (!tileState.failed && tileState.loads === 0 && tileState.errors >= 3) {
+    tileState.failed = true
+    failListeners.forEach((fn) => fn(true))
+  }
+}
+function useTilesFailed() {
+  const [failed, setFailed] = useState(tileState.failed)
+  useEffect(() => { failListeners.add(setFailed); return () => failListeners.delete(setFailed) }, [])
+  return failed
+}
 
 export function BaseMap({ center = ASSAM_CENTER, zoom = 9, children, onClick, style, className }) {
   const { resolved } = useTheme()
+  const failed = useTilesFailed()
   return (
-    <MapContainer center={center} zoom={zoom} className={className} style={{ height: '100%', width: '100%', ...style }} zoomControl preferCanvas>
-      <TileLayer key={resolved} url={TILES[resolved]} attribution={ATTR} subdomains="abcd" maxZoom={19} eventHandlers={{ tileerror: markTilesFailed }} />
-      <FallbackBase />
+    <MapContainer center={center} zoom={zoom} minZoom={2} maxBounds={WORLD_BOUNDS} maxBoundsViscosity={0.8} worldCopyJump={false}
+      className={className} style={{ height: '100%', width: '100%', ...style }} zoomControl preferCanvas>
+      {!failed && <TileLayer key={resolved} url={TILES[resolved]} attribution={ATTR} subdomains="abcd" maxZoom={19} noWrap
+        eventHandlers={{ tileerror: onTileError, tileload: onTileLoad }} />}
+      {failed && <VectorBasemap />}
       {onClick && <ClickHandler onClick={onClick} />}
       {children}
     </MapContainer>
   )
 }
 
-// If the basemap tiles can't load (offline, or a host that blocks external images),
-// draw a simple basemap from the app's own layers: geology, rivers and field names.
-let tilesFailed = false
-const failListeners = new Set()
-function markTilesFailed() {
-  if (tilesFailed) return
-  tilesFailed = true
-  failListeners.forEach((fn) => fn(true))
-}
-let baseCache = null
-function FallbackBase() {
-  const [failed, setFailed] = useState(tilesFailed)
-  const [base, setBase] = useState(baseCache)
-  useEffect(() => { failListeners.add(setFailed); return () => failListeners.delete(setFailed) }, [])
+/** Buttons to jump between world, India and the Assam oil fields. */
+export function ViewButtons({ extra }) {
+  const map = useMap()
+  const ref = useRef(null)
+  // Stop drags and wheel zoom starting on the buttons. Clicks are filtered in ClickHandler
+  // (blocking them here would also hide them from React).
   useEffect(() => {
-    if (failed && !base) api('/api/map/layers').then((l) => { baseCache = l; setBase(l) }).catch(() => {})
-  }, [failed, base])
-  if (!failed || !base) return null
+    if (!ref.current) return
+    L.DomEvent.on(ref.current, 'mousedown touchstart dblclick', L.DomEvent.stopPropagation)
+    L.DomEvent.disableScrollPropagation(ref.current)
+  }, [])
+  const go = (v) => map.flyTo(v.center, v.zoom, { duration: 1.1 })
   return (
-    <Pane name="fallback-base" style={{ zIndex: 250 }}>
-      {base.geology.map((g) => (
-        <Polygon key={`g${g.id}`} positions={g.polygon} interactive={false}
-          pathOptions={{ stroke: false, fillColor: g.rock_class === 'alluvium' ? '#e6dcc8' : g.rock_class === 'metamorphic' ? '#cdbfa6' : '#d8c7a4', fillOpacity: 0.55 }} />
-      ))}
-      {base.rivers.map((r) => (
-        <Polyline key={r.name} positions={r.line} interactive={false} pathOptions={{ color: '#7fa7c9', weight: r.name === 'Brahmaputra' ? 5 : 3, opacity: 0.8 }} />
-      ))}
-      {base.fields.map((f) => (
-        <Marker key={`f${f.id}`} position={[f.lat, f.lon]} interactive={false}
-          icon={L.divIcon({ className: '', iconSize: [120, 16], iconAnchor: [-8, 20], html: `<span style="font:500 11px Inter,system-ui,sans-serif;color:#6b5f52;white-space:nowrap">${f.name}</span>` })} />
-      ))}
-    </Pane>
+    <div className="view-buttons" ref={ref}>
+      <button className="chip" onClick={() => go(WORLD_VIEW)}>World</button>
+      <button className="chip" onClick={() => go(INDIA_VIEW)}>India</button>
+      <button className="chip" onClick={() => go(ASSAM_VIEW)}>Assam oil fields</button>
+      {extra}
+    </div>
   )
 }
 
+/** At country scale, a callout shows where the sample data is. Click to zoom in. */
+export function DataRegionCallout({ count }) {
+  const map = useMap()
+  const [zoom, setZoom] = useState(map.getZoom())
+  useMapEvents({ zoomend: () => setZoom(map.getZoom()) })
+  if (zoom >= 7) return null
+  const icon = L.divIcon({
+    className: '', iconSize: null,
+    html: `<div class="region-callout"><span class="pulse-dot"></span><div><b>Upper Assam oil fields</b><br/><span>${count} wells · sample data · click to zoom in</span></div></div>`,
+  })
+  return <Marker position={[27.3, 95.1]} icon={icon} zIndexOffset={2000} eventHandlers={{ click: () => map.flyTo(ASSAM_VIEW.center, ASSAM_VIEW.zoom, { duration: 1.2 }) }} />
+}
+
+/** Fly to a selected point, zooming in if we're still at country or world scale. */
+// Area with sample data (matches backend REGION, padded).
+export const DATA_REGION = { min_lat: 25.7, max_lat: 28.45, min_lon: 93.1, max_lon: 96.7 }
+export const inDataRegion = (lat, lon) => lat >= DATA_REGION.min_lat && lat <= DATA_REGION.max_lat && lon >= DATA_REGION.min_lon && lon <= DATA_REGION.max_lon
+
+export function FocusPoint({ point, minZoom = 11 }) {
+  const map = useMap()
+  useEffect(() => {
+    if (point && inDataRegion(point.lat, point.lon)) map.flyTo([point.lat, point.lon], Math.max(map.getZoom(), minZoom), { duration: 0.9 })
+  }, [point?.lat, point?.lon]) // eslint-disable-line
+  return null
+}
+
 function ClickHandler({ onClick }) {
-  useMapEvents({ click: (e) => onClick(e.latlng.lat, e.latlng.lng) })
+  useMapEvents({
+    click: (e) => {
+      if (e.originalEvent?.target?.closest?.('.view-buttons, .region-callout')) return
+      onClick(e.latlng.lat, e.latlng.lng)
+    },
+  })
   return null
 }
 
@@ -96,13 +139,17 @@ const cssVar = (v) => (v.startsWith('var(') ? getComputedStyle(document.document
 
 export function WellsLayer({ wells, onSelect, highlight }) {
   const { resolved } = useTheme()
+  const map = useMap()
+  const [zoom, setZoom] = useState(map.getZoom())
+  useMapEvents({ zoomend: () => setZoom(map.getZoom()) })
+  const small = zoom < 7 // at country scale, keep the cluster readable
   const colors = useMemo(() => Object.fromEntries(Object.entries(WELL_STYLE).map(([k, v]) => [k, cssVar(v.color)])), [resolved]) // eslint-disable-line
   return wells.map((w) => {
     const kind = wellKind(w)
     const hl = highlight && highlight.has(w.id)
     return (
-      <CircleMarker key={`${w.id}-${resolved}`} center={[w.lat, w.lon]} radius={w.is_active ? 8 : hl ? 7 : 5.5}
-        pathOptions={{ color: resolved === 'dark' ? '#221f1c' : '#fbf8f2', weight: 2, fillColor: colors[kind], fillOpacity: 1 }}
+      <CircleMarker key={`${w.id}-${resolved}`} center={[w.lat, w.lon]} radius={small ? (w.is_active ? 4 : 2.5) : w.is_active ? 8 : hl ? 7 : 5.5}
+        pathOptions={{ color: resolved === 'dark' ? '#221f1c' : '#fbf8f2', weight: small ? 1 : 2, fillColor: colors[kind], fillOpacity: 1 }}
         eventHandlers={{ click: (e) => { L.DomEvent.stopPropagation(e); onSelect && onSelect(w) } }}>
         <Tooltip direction="top" offset={[0, -6]}>
           <b>{w.name}</b> · {WELL_STYLE[kind].label}{w.is_active && w.current_depth_m ? ` · ${fmt.m(w.current_depth_m)}` : ''}

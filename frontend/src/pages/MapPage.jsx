@@ -3,7 +3,7 @@ import { Fragment, useMemo, useState } from 'react'
 import { CircleMarker, Tooltip } from 'react-leaflet'
 import { Link } from 'react-router-dom'
 import LocationPanel from '../components/LocationPanel'
-import { BaseMap, CandidatesLayer, DrillerMarker, HEAT_RAMP, Legend, UntappedLayer, WELL_STYLE, WellsLayer, ZONE_STYLE, ZonesLayer, ZoneCircle } from '../components/MapBits'
+import { BaseMap, CandidatesLayer, DataRegionCallout, DrillerMarker, FocusPoint, HEAT_RAMP, INDIA_VIEW, Legend, UntappedLayer, ViewButtons, WELL_STYLE, WellsLayer, ZONE_STYLE, ZonesLayer, ZoneCircle } from '../components/MapBits'
 import { ErrorBox, Loading } from '../components/ui'
 import { useLive } from '../context/LiveContext'
 import { fmt, useApi } from '../lib/util'
@@ -51,6 +51,7 @@ export default function MapPage() {
         <div>
           <div className="eyebrow">Location intelligence</div>
           <h1 style={{ fontSize: 30 }}>Tap anywhere to check a spot</h1>
+          <p className="muted small mt-4">Zoom out for India and the world, zoom in on the Upper Assam oil fields where the sample data is.</p>
         </div>
         <button className="btn ghost sm" onClick={() => setShowHelp(!showHelp)}><Info size={15} />How untapped spots work</button>
       </div>
@@ -63,7 +64,14 @@ export default function MapPage() {
         </div>
       )}
       <div className="map-page">
-        <BaseMap onClick={(lat, lon) => setPoint({ lat, lon })}>
+        <BaseMap center={INDIA_VIEW.center} zoom={INDIA_VIEW.zoom} onClick={(lat, lon) => setPoint({ lat, lon })}>
+          <ViewButtons />
+          <DataRegionCallout count={data.wells.length} />
+          <FocusPoint point={point} minZoom={10} />
+          {point && (
+            <CircleMarker center={[point.lat, point.lon]} radius={9} interactive={false}
+              pathOptions={{ color: '#fff', weight: 3, fillColor: '#d03b3b', fillOpacity: 1 }} />
+          )}
           {on.heat && untapped.data && <UntappedLayer grid={untapped.data.grid} step={untapped.data.grid_step} spots={[]} />}
           {on.zones && <ZonesLayer zones={data.zones.filter((z) => z.zone_type !== 'licensed_block')} onSelect={(lat, lon) => setPoint({ lat, lon })} />}
           {on.blocks && <ZonesLayer zones={data.zones.filter((z) => z.zone_type === 'licensed_block')} />}

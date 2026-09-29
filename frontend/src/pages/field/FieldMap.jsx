@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Fragment } from 'react'
 import LocationPanel from '../../components/LocationPanel'
-import { BaseMap, DrillerMarker, FitBounds, WellsLayer, ZoneCircle, ZonesLayer } from '../../components/MapBits'
+import { BaseMap, DataRegionCallout, DrillerMarker, FitBounds, FocusPoint, INDIA_VIEW, ViewButtons, WellsLayer, ZoneCircle, ZonesLayer } from '../../components/MapBits'
 import { Loading, StatusPill } from '../../components/ui'
 import { useAuth } from '../../context/AuthContext'
 import { useLive } from '../../context/LiveContext'
@@ -24,7 +24,10 @@ export default function FieldMap() {
     <div className="col gap-16">
       <div className="row between"><h1 style={{ fontSize: 28 }}>Map</h1>{st && <StatusPill tone={st.cls} label={st.label} />}</div>
       <div className="field-map tall" style={{ position: 'relative' }}>
-        <BaseMap onClick={(lat, lon) => setPoint({ lat, lon })} zoom={user.role === 'driller' ? 13 : 9}>
+        <BaseMap onClick={(lat, lon) => setPoint({ lat, lon })} center={INDIA_VIEW.center} zoom={4}>
+          <ViewButtons />
+          <DataRegionCallout count={layers.data.wells.length} />
+          <FocusPoint point={point} minZoom={10} />
           <ZonesLayer zones={layers.data.zones.filter((z) => z.zone_type !== 'licensed_block')} onSelect={(lat, lon) => setPoint({ lat, lon })} />
           <WellsLayer wells={layers.data.wells} onSelect={(w) => setPoint({ lat: w.lat, lon: w.lon, title: w.name })} />
           {drillers.map((d) => (

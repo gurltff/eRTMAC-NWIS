@@ -43,7 +43,7 @@ function ScoreRing({ score, label }) {
 export function LocationDetail({ lat, lon, extra }) {
   const { data: d, error, loading } = useApi('/api/map/location', { lat: lat.toFixed(5), lon: lon.toFixed(5) })
   if (loading) return <Loading text="Checking this spot…" />
-  if (error) return <ErrorBox error={error} />
+  if (error) return error.startsWith('Detailed checks') ? <div className="notice">{error}</div> : <ErrorBox error={error} />
   if (!d) return null
   const v = VERDICT[d.legality.verdict]
   const own = d.ownership

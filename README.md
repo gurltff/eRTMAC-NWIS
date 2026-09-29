@@ -77,7 +77,9 @@ approves or rejects each document and the registration.
 
 ## 3. Suggested demo script (≈5 minutes)
 
-1. **Location intelligence.** Log in as the engineer and open **Location map**. Tap any spot. The panel shows:
+1. **Location intelligence.** Log in as the engineer and open **Location map**. It opens on all of India; zoom
+   out for the world, or use the **World / India / Assam oil fields** buttons. The "Upper Assam oil fields"
+   callout marks where the sample data is. Zoom in there and tap any spot; the map flies to it and the panel shows:
    history, rock and soil, a success score (0–100) with confidence, hazards (landslide, subsidence, flooding,
    gas kick, mud loss, stuck pipe, earthquake, eco-sensitivity), legal or illegal zone, estimated oil (P90/P50/P10
    and risked), and ownership. Try a spot inside Dehing Patkai National Park (illegal) and one on open ground.
@@ -184,9 +186,10 @@ build: API calls are answered **inside the browser** by `frontend/src/demo/`, us
   Python results);
 - `pdf.js` to read PDFs, and in-browser timers for the tracking and drilling simulators.
 
-Changes you make there (registrations, approvals, breaches) are saved only in your own browser. If the map
-tiles can't load (offline, or a host that blocks external images), the map draws a simple basemap from the
-app's own geology, river and field layers instead. For the full
+Changes you make there (registrations, approvals, breaches) are saved only in your own browser. If the online
+map tiles can't load (offline, or a host that blocks external images), the app switches to its built-in
+basemap: world countries (India's official point-of-view borders), Indian states, rivers and city labels from
+Natural Earth, shipped in `frontend/public/basemap/` (about 900 KB). For the full
 system (real backend, Claude extraction, OCR, retraining), run it locally as in section 1.
 
 To rebuild the hosted version: `cd backend && python -m scripts.export_demo && cd ../frontend && npm run build:demo`.

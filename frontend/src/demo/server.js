@@ -367,7 +367,7 @@ const FIELD_NOTES = {
 
 async function locationDetail(lat, lon) {
   const r = snap.region
-  if (lat < r.min_lat - 0.5 || lat > r.max_lat + 0.5 || lon < r.min_lon - 0.5 || lon > r.max_lon + 0.5) fail(400, 'This prototype only has data for Upper Assam and nearby areas.')
+  if (lat < r.min_lat - 0.5 || lat > r.max_lat + 0.5 || lon < r.min_lon - 0.5 || lon > r.max_lon + 0.5) fail(400, 'Detailed checks cover Upper Assam and nearby only, where the sample data is. Use the Assam oil fields button to zoom in there.')
   const c = cellAt(lat, lon)
   const [, , prob, conf, closure, tipam, ratio, n10, kmProd, elev, slope, relief] = c
   const terrain = { elevation_m: elev, slope_deg: slope, local_relief_m: relief, source: 'Modelled terrain (browser demo: precomputed 2.7 km grid)' }

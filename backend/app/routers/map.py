@@ -41,7 +41,7 @@ def layers(_: m.User = Depends(current_user), db: Session = Depends(get_db)):
 def location(lat: float = Query(ge=-90, le=90), lon: float = Query(ge=-180, le=180),
              _: m.User = Depends(current_user), db: Session = Depends(get_db)):
     if not (REGION["min_lat"] - 0.5 <= lat <= REGION["max_lat"] + 0.5 and REGION["min_lon"] - 0.5 <= lon <= REGION["max_lon"] + 0.5):
-        raise HTTPException(400, "This prototype only has data for Upper Assam and nearby areas.")
+        raise HTTPException(400, "Detailed checks cover Upper Assam and nearby only, where the sample data is. Use the Assam oil fields button to zoom in there.")
     return location_detail(db, lat, lon)
 
 
