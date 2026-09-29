@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:demo": "vite build --mode demo",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:pages": "vite build --mode demo --outDir ../app --emptyOutDir"
   },
   "dependencies": {
     "leaflet": "1.9",

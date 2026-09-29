@@ -191,7 +191,10 @@ basemap: world countries (India's official point-of-view borders), Indian states
 Natural Earth, shipped in `frontend/public/basemap/` (about 900 KB). For the full
 system (real backend, Claude extraction, OCR, retraining), run it locally as in section 1.
 
-To rebuild the hosted version: `cd backend && python -m scripts.export_demo && cd ../frontend && npm run build:demo`.
+To rebuild the hosted version: `cd backend && python -m scripts.export_demo && cd ../frontend && npm run build:pages`,
+then commit the `app/` folder. GitHub Pages serves the repo root: `index.html` forwards to `app/`, and
+`.nojekyll` stops GitHub from rendering README.md as the homepage. The Pages workflow publishes the same layout
+if the Pages source is set to GitHub Actions.
 
 ---
 

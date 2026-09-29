@@ -1,4 +1,6 @@
-# Publishes the static browser demo to GitHub Pages.
+# Publishes the static browser demo to GitHub Pages (Pages source: GitHub Actions).
+# If Pages is set to deploy the branch instead, the committed index.html + app/ serve the same site;
+# refresh app/ with `cd frontend && npm run build:pages` after frontend changes.
 # If the run fails at configure-pages: repo Settings → Pages → Source: "GitHub Actions", then re-run.
 name: Deploy demo to GitHub Pages
 on:
@@ -18,11 +20,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: "20" }
-      - run: npm ci && npm run build:demo
+      - run: npm ci && npm run build:pages
         working-directory: frontend
+      # Same layout as the committed branch: root index.html → app/
+      - run: mkdir -p _site && cp -r index.html .nojekyll app _site/
       - uses: actions/configure-pages@v5
         with: { enablement: true }
       - uses: actions/upload-pages-artifact@v3
-        with: { path: frontend/dist }
+        with: { path: _site }
       - id: deployment
         uses: actions/deploy-pages@v4
