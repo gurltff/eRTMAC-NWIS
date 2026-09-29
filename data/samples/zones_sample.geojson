@@ -1,0 +1,522 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dibru-Saikhowa National Park",
+    "zone_type": "protected_area",
+    "authority": "Assam Forest Dept / MoEFCC",
+    "source": "WDPA (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.17,
+       27.62
+      ],
+      [
+       95.24,
+       27.7
+      ],
+      [
+       95.45,
+       27.73
+      ],
+      [
+       95.62,
+       27.69
+      ],
+      [
+       95.6,
+       27.62
+      ],
+      [
+       95.45,
+       27.61
+      ],
+      [
+       95.3,
+       27.6
+      ],
+      [
+       95.17,
+       27.62
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Maguri-Motapung Beel wetland",
+    "zone_type": "wetland",
+    "authority": "Eco-sensitive zone, Tinsukia",
+    "source": "OSM wetland (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.335,
+       27.588
+      ],
+      [
+       95.332,
+       27.6
+      ],
+      [
+       95.352,
+       27.608
+      ],
+      [
+       95.378,
+       27.604
+      ],
+      [
+       95.382,
+       27.592
+      ],
+      [
+       95.36,
+       27.585
+      ],
+      [
+       95.335,
+       27.588
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dehing Patkai National Park",
+    "zone_type": "protected_area",
+    "authority": "Assam Forest Dept / MoEFCC",
+    "source": "WDPA (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.5,
+       27.3
+      ],
+      [
+       95.62,
+       27.33
+      ],
+      [
+       95.8,
+       27.32
+      ],
+      [
+       95.92,
+       27.26
+      ],
+      [
+       95.85,
+       27.19
+      ],
+      [
+       95.62,
+       27.2
+      ],
+      [
+       95.52,
+       27.24
+      ],
+      [
+       95.5,
+       27.3
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Hollongapar Gibbon Sanctuary",
+    "zone_type": "protected_area",
+    "authority": "Assam Forest Dept",
+    "source": "WDPA (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       94.325,
+       26.67
+      ],
+      [
+       94.385,
+       26.67
+      ],
+      [
+       94.385,
+       26.735
+      ],
+      [
+       94.325,
+       26.735
+      ],
+      [
+       94.325,
+       26.67
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Kaziranga National Park (east part)",
+    "zone_type": "protected_area",
+    "authority": "MoEFCC / UNESCO World Heritage",
+    "source": "WDPA (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       93.35,
+       26.56
+      ],
+      [
+       93.3,
+       26.68
+      ],
+      [
+       93.55,
+       26.75
+      ],
+      [
+       93.72,
+       26.7
+      ],
+      [
+       93.7,
+       26.6
+      ],
+      [
+       93.35,
+       26.56
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Panidihing Bird Sanctuary",
+    "zone_type": "protected_area",
+    "authority": "Assam Forest Dept",
+    "source": "WDPA (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       94.52,
+       26.97
+      ],
+      [
+       94.575,
+       26.97
+      ],
+      [
+       94.575,
+       27.005
+      ],
+      [
+       94.52,
+       27.005
+      ],
+      [
+       94.52,
+       26.97
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Upper Dihing (East) Reserved Forest",
+    "zone_type": "reserved_forest",
+    "authority": "Assam Forest Dept",
+    "source": "OSM landuse=forest (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.72,
+       27.4
+      ],
+      [
+       95.86,
+       27.4
+      ],
+      [
+       95.86,
+       27.48
+      ],
+      [
+       95.72,
+       27.48
+      ],
+      [
+       95.72,
+       27.4
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Doomdooma Reserved Forest",
+    "zone_type": "reserved_forest",
+    "authority": "Assam Forest Dept",
+    "source": "OSM landuse=forest (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.62,
+       27.515
+      ],
+      [
+       95.72,
+       27.515
+      ],
+      [
+       95.72,
+       27.56
+      ],
+      [
+       95.62,
+       27.56
+      ],
+      [
+       95.62,
+       27.515
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Nambor Reserved Forest",
+    "zone_type": "reserved_forest",
+    "authority": "Assam Forest Dept",
+    "source": "OSM landuse=forest (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       93.62,
+       26.34
+      ],
+      [
+       93.84,
+       26.34
+      ],
+      [
+       93.84,
+       26.5
+      ],
+      [
+       93.62,
+       26.5
+      ],
+      [
+       93.62,
+       26.34
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Abhoypur Reserved Forest",
+    "zone_type": "reserved_forest",
+    "authority": "Assam Forest Dept",
+    "source": "OSM landuse=forest (simplified sample outline)",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.05,
+       27.15
+      ],
+      [
+       95.18,
+       27.15
+      ],
+      [
+       95.18,
+       27.22
+      ],
+      [
+       95.05,
+       27.22
+      ],
+      [
+       95.05,
+       27.15
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Chabua Air Force Station",
+    "zone_type": "restricted",
+    "authority": "Ministry of Defence",
+    "source": "Sample restricted area",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.1,
+       27.458
+      ],
+      [
+       95.132,
+       27.458
+      ],
+      [
+       95.132,
+       27.476
+      ],
+      [
+       95.1,
+       27.476
+      ],
+      [
+       95.1,
+       27.458
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Digboi Refinery safety buffer",
+    "zone_type": "restricted",
+    "authority": "PESO / refinery safety",
+    "source": "Sample restricted area",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.632,
+       27.372
+      ],
+      [
+       95.65,
+       27.372
+      ],
+      [
+       95.65,
+       27.384
+      ],
+      [
+       95.632,
+       27.384
+      ],
+      [
+       95.632,
+       27.372
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dibrugarh town (urban)",
+    "zone_type": "urban",
+    "authority": "Dibrugarh Municipal Corporation",
+    "source": "Sample urban limit",
+    "legal_to_drill": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       94.88,
+       27.455
+      ],
+      [
+       94.96,
+       27.455
+      ],
+      [
+       94.96,
+       27.5
+      ],
+      [
+       94.88,
+       27.5
+      ],
+      [
+       94.88,
+       27.455
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

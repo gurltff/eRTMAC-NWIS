@@ -1,0 +1,17 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+sqlalchemy>=2.0
+pyjwt>=2.8
+email-validator>=2.1
+python-multipart>=0.0.9
+scikit-learn>=1.4
+numpy>=1.26
+pypdf>=4.0
+httpx>=0.27
+pyshp>=2.3
+reportlab>=4.0
+anthropic>=1.0
+pytest>=8.0
+# Optional extras (not needed for the demo):
+#   pytesseract pdf2image pillow   -> OCR for scanned PDFs (also needs the tesseract + poppler system packages)
+#   rasterio                       -> read real SRTM GeoTIFF tiles from data/raw/srtm

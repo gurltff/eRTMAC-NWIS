@@ -1,0 +1,375 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dihing Group boulder beds (Plio-Pleistocene)",
+    "lithology": "Poorly sorted sandstone, pebble and boulder beds",
+    "age": "Plio-Pleistocene",
+    "rock_class": "sedimentary",
+    "strength": 0.35,
+    "petroleum_play": 0.55
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.55,
+       27.33
+      ],
+      [
+       95.58,
+       27.44
+      ],
+      [
+       95.95,
+       27.46
+      ],
+      [
+       95.98,
+       27.36
+      ],
+      [
+       95.76,
+       27.31
+      ],
+      [
+       95.55,
+       27.33
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Belt of Schuppen \u2013 Tipam & Barail sandstones",
+    "lithology": "Thrust slices of Tipam sandstone, Barail sandstone-shale-coal",
+    "age": "Oligocene\u2013Miocene",
+    "rock_class": "sedimentary",
+    "strength": 0.45,
+    "petroleum_play": 0.55
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       93.95,
+       26.25
+      ],
+      [
+       94.35,
+       26.55
+      ],
+      [
+       94.78,
+       26.85
+      ],
+      [
+       95.15,
+       27.05
+      ],
+      [
+       95.45,
+       27.2
+      ],
+      [
+       95.75,
+       27.3
+      ],
+      [
+       96.2,
+       27.42
+      ],
+      [
+       96.25,
+       27.310000000000002
+      ],
+      [
+       95.8,
+       27.19
+      ],
+      [
+       95.5,
+       27.09
+      ],
+      [
+       95.2,
+       26.94
+      ],
+      [
+       94.83,
+       26.740000000000002
+      ],
+      [
+       94.39999999999999,
+       26.44
+      ],
+      [
+       94.0,
+       26.14
+      ],
+      [
+       93.95,
+       26.25
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Naga Hills \u2013 Disang shale",
+    "lithology": "Dark splintery shale with thin sandstone, highly fractured",
+    "age": "Upper Cretaceous\u2013Eocene",
+    "rock_class": "sedimentary",
+    "strength": 0.28,
+    "petroleum_play": 0.15
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       94.0,
+       26.14
+      ],
+      [
+       94.39999999999999,
+       26.44
+      ],
+      [
+       94.83,
+       26.740000000000002
+      ],
+      [
+       95.2,
+       26.94
+      ],
+      [
+       95.5,
+       27.09
+      ],
+      [
+       95.8,
+       27.19
+      ],
+      [
+       96.25,
+       27.310000000000002
+      ],
+      [
+       96.2,
+       26.2
+      ],
+      [
+       94.05,
+       26.2
+      ],
+      [
+       94.0,
+       26.14
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Mikir Hills \u2013 Precambrian gneiss",
+    "lithology": "Granite gneiss and porphyritic granite (basement)",
+    "age": "Precambrian",
+    "rock_class": "metamorphic",
+    "strength": 0.85,
+    "petroleum_play": 0.02
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       93.6,
+       26.2
+      ],
+      [
+       93.6,
+       26.46
+      ],
+      [
+       93.78,
+       26.42
+      ],
+      [
+       93.82,
+       26.2
+      ],
+      [
+       93.6,
+       26.2
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Mishmi foothills \u2013 Siwalik sandstone",
+    "lithology": "Soft sandstone, siltstone and conglomerate",
+    "age": "Mio-Pliocene",
+    "rock_class": "sedimentary",
+    "strength": 0.3,
+    "petroleum_play": 0.2
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       95.7,
+       27.78
+      ],
+      [
+       95.7,
+       27.95
+      ],
+      [
+       96.2,
+       27.95
+      ],
+      [
+       96.2,
+       27.7
+      ],
+      [
+       95.7,
+       27.78
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "North-bank alluvium (Quaternary)",
+    "lithology": "Sand, silt and clay of the Brahmaputra flood plain (north bank)",
+    "age": "Quaternary",
+    "rock_class": "alluvium",
+    "strength": 0.22,
+    "petroleum_play": 0.3
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       93.6,
+       27.95
+      ],
+      [
+       93.6,
+       26.7
+      ],
+      [
+       93.7,
+       26.78
+      ],
+      [
+       93.95,
+       26.85
+      ],
+      [
+       94.15,
+       26.95
+      ],
+      [
+       94.35,
+       27.08
+      ],
+      [
+       94.55,
+       27.25
+      ],
+      [
+       94.75,
+       27.42
+      ],
+      [
+       94.95,
+       27.52
+      ],
+      [
+       95.1,
+       27.62
+      ],
+      [
+       95.25,
+       27.7
+      ],
+      [
+       95.45,
+       27.78
+      ],
+      [
+       95.66,
+       27.83
+      ],
+      [
+       95.66,
+       27.95
+      ],
+      [
+       93.6,
+       27.95
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Upper Assam shelf \u2013 Brahmaputra alluvium over Tertiary",
+    "lithology": "Alluvial sand, silt and clay over Tipam/Barail reservoirs of the Upper Assam shelf",
+    "age": "Quaternary (surface)",
+    "rock_class": "alluvium",
+    "strength": 0.25,
+    "petroleum_play": 0.7
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       93.6,
+       26.2
+      ],
+      [
+       96.2,
+       26.2
+      ],
+      [
+       96.2,
+       27.95
+      ],
+      [
+       93.6,
+       27.95
+      ],
+      [
+       93.6,
+       26.2
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

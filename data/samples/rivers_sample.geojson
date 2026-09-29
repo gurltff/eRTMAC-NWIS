@@ -1,0 +1,109 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Brahmaputra",
+    "source": "Approximate centreline (sample)"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      95.66,
+      27.83
+     ],
+     [
+      95.45,
+      27.78
+     ],
+     [
+      95.25,
+      27.7
+     ],
+     [
+      95.1,
+      27.62
+     ],
+     [
+      94.95,
+      27.52
+     ],
+     [
+      94.75,
+      27.42
+     ],
+     [
+      94.55,
+      27.25
+     ],
+     [
+      94.35,
+      27.08
+     ],
+     [
+      94.15,
+      26.95
+     ],
+     [
+      93.95,
+      26.85
+     ],
+     [
+      93.7,
+      26.78
+     ],
+     [
+      93.35,
+      26.7
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Burhi Dihing",
+    "source": "Approximate centreline (sample)"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      95.95,
+      27.3
+     ],
+     [
+      95.7,
+      27.35
+     ],
+     [
+      95.45,
+      27.3
+     ],
+     [
+      95.25,
+      27.25
+     ],
+     [
+      95.05,
+      27.2
+     ],
+     [
+      94.85,
+      27.12
+     ],
+     [
+      94.65,
+      27.05
+     ],
+     [
+      94.55,
+      27.02
+     ]
+    ]
+   }
+  }
+ ]
+}

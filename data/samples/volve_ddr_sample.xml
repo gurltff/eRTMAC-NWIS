@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SAMPLE DATA. Synthetic daily drilling reports written in the same WITSML 1.4.1
+  drillReport structure used by the Equinor Volve DDR XML files, so that
+  backend/loaders/volve_ddr_loader.py can be demonstrated offline.
+  Put the real Volve DDR XMLs in data/raw/volve_ddr/ to parse the real reports.
+-->
+<drillReports xmlns="http://www.witsml.org/schemas/1series" version="1.4.1.1">
+  <drillReport uidWell="W-SAMPLE-F12" uidWellbore="WB-SAMPLE-F12" uid="DDR-0001">
+    <nameWell>NO 15/9-F-12 (SAMPLE)</nameWell>
+    <nameWellbore>NO 15/9-F-12</nameWellbore>
+    <dTimStart>2007-11-02T00:00:00+01:00</dTimStart>
+    <dTimEnd>2007-11-03T00:00:00+01:00</dTimEnd>
+    <statusInfo>
+      <dTim>2007-11-03T00:00:00+01:00</dTim>
+      <md uom="m">1420</md>
+      <sum24Hr>Drilled 17 1/2" section from 1180 m to 1420 m. Partial losses at 1390 m, cured with LCM pill.</sum24Hr>
+    </statusInfo>
+    <activity>
+      <dTimStart>2007-11-02T00:00:00+01:00</dTimStart>
+      <dTimEnd>2007-11-02T14:00:00+01:00</dTimEnd>
+      <md uom="m">1385</md>
+      <phase>drilling</phase>
+      <proprietaryCode>drilling -- drill</proprietaryCode>
+      <state>ok</state>
+      <stateDetailActivity>success</stateDetailActivity>
+      <comments>Drilled 17 1/2" hole from 1180 m to 1385 m MD. ROP 25-35 m/hr. Mud weight 1.30 sg.</comments>
+    </activity>
+    <activity>
+      <dTimStart>2007-11-02T14:00:00+01:00</dTimStart>
+      <dTimEnd>2007-11-02T19:30:00+01:00</dTimEnd>
+      <md uom="m">1390</md>
+      <phase>drilling</phase>
+      <proprietaryCode>interruption -- lost circulation</proprietaryCode>
+      <state>fail</state>
+      <stateDetailActivity>failure</stateDetailActivity>
+      <comments>Observed losses of 12 m3/hr at 1390 m MD in Hordaland Gp. Reduced pump rate and pumped 15 m3 LCM pill (calcium carbonate, medium). Losses cured after 5.5 hrs. Lesson: pre-treat mud with LCM before entering this interval.</comments>
+    </activity>
+    <activity>
+      <dTimStart>2007-11-02T19:30:00+01:00</dTimStart>
+      <dTimEnd>2007-11-03T00:00:00+01:00</dTimEnd>
+      <md uom="m">1420</md>
+      <phase>drilling</phase>
+      <proprietaryCode>drilling -- drill</proprietaryCode>
+      <state>ok</state>
+      <comments>Continued drilling to 1420 m with full returns.</comments>
+    </activity>
+  </drillReport>
+  <drillReport uidWell="W-SAMPLE-F12" uidWellbore="WB-SAMPLE-F12" uid="DDR-0002">
+    <nameWell>NO 15/9-F-12 (SAMPLE)</nameWell>
+    <nameWellbore>NO 15/9-F-12</nameWellbore>
+    <dTimStart>2007-11-09T00:00:00+01:00</dTimStart>
+    <dTimEnd>2007-11-10T00:00:00+01:00</dTimEnd>
+    <statusInfo>
+      <dTim>2007-11-10T00:00:00+01:00</dTim>
+      <md uom="m">2610</md>
+      <sum24Hr>Drilled 12 1/4" section to 2610 m. Pack-off and stuck pipe at 2595 m, freed by jarring.</sum24Hr>
+    </statusInfo>
+    <activity>
+      <dTimStart>2007-11-09T03:00:00+01:00</dTimStart>
+      <dTimEnd>2007-11-09T11:00:00+01:00</dTimEnd>
+      <md uom="m">2595</md>
+      <phase>drilling</phase>
+      <proprietaryCode>interruption -- stuck equipment</proprietaryCode>
+      <state>fail</state>
+      <stateDetailActivity>failure</stateDetailActivity>
+      <comments>String packed off and got stuck at 2595 m MD in Shetland Gp while making connection. Torque increased to 32 kNm. Jarred down, freed string after 8 hrs. Cause: poor hole cleaning. Lesson: circulate hole clean before connections, keep flow rate above 3800 lpm.</comments>
+    </activity>
+    <activity>
+      <dTimStart>2007-11-09T11:00:00+01:00</dTimStart>
+      <dTimEnd>2007-11-09T16:00:00+01:00</dTimEnd>
+      <md uom="m">2605</md>
+      <phase>drilling</phase>
+      <proprietaryCode>drilling -- drill</proprietaryCode>
+      <state>ok</state>
+      <comments>Erratic torque, torque spikes up to 30 kNm between 2598 m and 2605 m. Reduced RPM to 120 and WOB to 8 t.</comments>
+    </activity>
+  </drillReport>
+  <drillReport uidWell="W-SAMPLE-F12" uidWellbore="WB-SAMPLE-F12" uid="DDR-0003">
+    <nameWell>NO 15/9-F-12 (SAMPLE)</nameWell>
+    <nameWellbore>NO 15/9-F-12</nameWellbore>
+    <dTimStart>2007-11-18T00:00:00+01:00</dTimStart>
+    <dTimEnd>2007-11-19T00:00:00+01:00</dTimEnd>
+    <statusInfo>
+      <dTim>2007-11-19T00:00:00+01:00</dTim>
+      <md uom="m">3210</md>
+      <sum24Hr>Drilled 8 1/2" section into Hugin Fm. Small gas influx at 3185 m, well shut in and circulated out.</sum24Hr>
+    </statusInfo>
+    <activity>
+      <dTimStart>2007-11-18T06:00:00+01:00</dTimStart>
+      <dTimEnd>2007-11-18T13:00:00+01:00</dTimEnd>
+      <md uom="m">3185</md>
+      <phase>drilling</phase>
+      <proprietaryCode>interruption -- well control</proprietaryCode>
+      <state>fail</state>
+      <stateDetailActivity>failure</stateDetailActivity>
+      <comments>Pit gain of 2.1 m3 observed at 3185 m MD. Flow check positive, shut in well. Kick circulated out with drillers method, mud weight raised from 1.25 to 1.32 sg. Cause: pore pressure higher than prognosis in Hugin Fm. Lesson: raise mud weight before drilling into Hugin sands.</comments>
+    </activity>
+    <activity>
+      <dTimStart>2007-11-18T20:00:00+01:00</dTimStart>
+      <dTimEnd>2007-11-19T00:00:00+01:00</dTimEnd>
+      <md uom="m">3210</md>
+      <phase>casing</phase>
+      <proprietaryCode>interruption -- other</proprietaryCode>
+      <state>fail</state>
+      <comments>Cement job on 9 5/8" casing: lost returns during displacement, top of cement lower than planned. Remedial squeeze planned. Lesson: use lightweight lead slurry.</comments>
+    </activity>
+  </drillReport>
+</drillReports>

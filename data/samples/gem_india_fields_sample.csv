@@ -1,0 +1,19 @@
+unit_name,country,subnational_unit,operator,past_operators,discovery_year,status,lat,lon,reserves_mmbbl,production_bpd,basin,porosity,water_saturation,formation_volume_factor,net_pay_m,recovery_factor
+Digboi,India,Assam,Oil India Limited,Assam Railways & Trading Co (1889-1921)|Assam Oil Company / Burmah Oil (1921-1981),1889,operating,27.395,95.625,6.5,420,Assam-Arakan,0.18,0.42,1.12,14,0.28
+Naharkatiya,India,Assam,Oil India Limited,Assam Oil Company / Burmah Oil (1953-1959),1953,operating,27.290,95.330,38.0,2100,Assam-Arakan,0.22,0.35,1.18,22,0.32
+Moran,India,Assam,Oil India Limited,Assam Oil Company / Burmah Oil (1956-1959),1956,operating,27.175,94.920,24.0,1500,Assam-Arakan,0.21,0.37,1.16,18,0.30
+Jorajan,India,Assam,Oil India Limited,,1962,operating,27.335,95.495,11.0,640,Assam-Arakan,0.20,0.40,1.15,15,0.27
+Hugrijan,India,Assam,Oil India Limited,,1966,operating,27.445,95.360,9.5,520,Assam-Arakan,0.19,0.41,1.14,13,0.26
+Baghjan,India,Assam,Oil India Limited,,2003,operating,27.580,95.405,14.0,900,Assam-Arakan,0.23,0.34,1.20,20,0.30
+Makum,India,Assam,Oil India Limited,,1976,operating,27.455,95.480,7.0,380,Assam-Arakan,0.18,0.43,1.13,11,0.25
+Kathaloni,India,Assam,Oil India Limited,,1983,operating,27.360,95.215,12.0,700,Assam-Arakan,0.21,0.38,1.16,16,0.29
+Tengakhat,India,Assam,Oil India Limited,,1985,operating,27.395,95.095,8.0,450,Assam-Arakan,0.20,0.40,1.15,12,0.27
+Chabua,India,Assam,Oil India Limited,,1994,operating,27.500,95.190,5.5,260,Assam-Arakan,0.19,0.44,1.13,10,0.24
+Lakwa,India,Assam,Oil and Natural Gas Corporation,,1964,operating,26.955,94.855,45.0,2600,Assam-Arakan,0.22,0.33,1.19,24,0.33
+Rudrasagar,India,Assam,Oil and Natural Gas Corporation,,1960,operating,26.925,94.610,30.0,1800,Assam-Arakan,0.21,0.36,1.17,20,0.31
+Geleki,India,Assam,Oil and Natural Gas Corporation,,1968,operating,26.830,94.730,26.0,1600,Assam-Arakan,0.20,0.37,1.16,19,0.30
+Borholla,India,Assam,Oil and Natural Gas Corporation,,1973,operating,26.465,93.955,6.0,300,Assam-Arakan,0.17,0.45,1.12,9,0.23
+Khoraghat,India,Assam,Oil and Natural Gas Corporation,,1980,operating,26.395,93.880,4.5,220,Assam-Arakan,0.17,0.46,1.11,8,0.22
+Amguri,India,Assam,Oil and Natural Gas Corporation,,1972,operating,26.800,94.540,5.0,240,Assam-Arakan,0.18,0.44,1.12,10,0.24
+Kharsang,India,Arunachal Pradesh,Geoenpro Petroleum (JV),Oil India Limited (1976-1995),1976,operating,27.285,95.985,3.5,180,Assam-Arakan,0.17,0.47,1.10,8,0.21
+Kumchai,India,Arunachal Pradesh,Oil India Limited,,1990,operating,27.370,95.905,2.5,120,Assam-Arakan,0.16,0.48,1.10,7,0.20
