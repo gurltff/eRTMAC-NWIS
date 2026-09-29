@@ -9,7 +9,7 @@ live geotag tracking with range checks, an offset-well alert engine and AI docum
 > screen and a full honesty panel under **Office view → Data & models**.
 
 - **Backend:** Python, FastAPI, SQLAlchemy + SQLite, websockets, scikit-learn, pypdf, optional Claude (Anthropic SDK)
-- **Frontend:** React + Vite, Leaflet (CARTO basemaps), Recharts, light and dark themes
+- **Frontend:** React + Vite, Leaflet (OpenStreetMap tiles + built-in Natural Earth map), Recharts, light and dark themes
 - **Tests:** 35 pytest tests (geometry, trajectory, breach detection, alert engine, main API routes, websocket, extraction)
 
 **Live demo (browser-only build, GitHub Pages):** https://gurltff.github.io/eRTMAC-NWIS/
@@ -54,6 +54,7 @@ http://localhost:8000.
 | `JWT_SECRET` | Signing key for login tokens. Set a long random value outside a demo. |
 | `SOILGRIDS_ENABLED=0` | Skip live ISRIC SoilGrids calls (an estimate from geology is used instead). |
 | `DRILLING_SIM_ENABLED=0` | Stop the active wells' depth from advancing on its own. |
+| `VITE_TILE_URL` (frontend build) | Street-map tiles. Default is OpenStreetMap (free, no API key). To use CARTO or MapTiler, get a key from them and set e.g. `VITE_TILE_URL=https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=YOUR_KEY` plus `VITE_TILE_ATTRIBUTION`. |
 
 ---
 
@@ -77,7 +78,8 @@ approves or rejects each document and the registration.
 ## 3. Suggested demo script (≈5 minutes)
 
 1. **Location intelligence.** Log in as the engineer and open **Location map**. It opens on all of India; zoom
-   out for the world, or use the **World / India / Assam oil fields** buttons. The "Upper Assam oil fields"
+   out for the world, or use the **World / India / Assam oil fields** buttons. **Simple map / Street map** switches
+   between the built-in map and OpenStreetMap tiles. The "Upper Assam oil fields"
    callout marks where the sample data is. Zoom in there and tap any spot; the map flies to it and the panel shows:
    history, rock and soil, a success score (0–100) with confidence, hazards (landslide, subsidence, flooding,
    gas kick, mud loss, stuck pipe, earthquake, eco-sensitivity), legal or illegal zone, estimated oil (P90/P50/P10

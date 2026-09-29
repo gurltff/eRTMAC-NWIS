@@ -11,40 +11,46 @@ export const INDIA_VIEW = { center: [22.8, 82.5], zoom: 5 }
 export const WORLD_VIEW = { center: [20, 40], zoom: 2 }
 export const ASSAM_VIEW = { center: [27.15, 94.95], zoom: 9 }
 
-const TILES = {
-  light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-}
-const ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> · Natural Earth'
+// Street tiles: OpenStreetMap (free, no API key; the attribution below is required).
+// Set VITE_TILE_URL at build time to use another provider, e.g. CARTO or MapTiler with your own key.
+const TILE_URL = import.meta.env.VITE_TILE_URL || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+const TILE_ATTR = import.meta.env.VITE_TILE_ATTRIBUTION ||
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Natural Earth'
 const WORLD_BOUNDS = [[-82, -185], [85, 185]]
 
-// Online tiles are the normal basemap. If they can't load (offline, or a host that
-// blocks external images) the built-in Natural Earth basemap takes over.
+// Basemap choice: 'street' (online tiles) or 'simple' (built-in Natural Earth map).
+// The simple map is also used automatically when the tiles can't load at all.
 const tileState = { loads: 0, errors: 0, failed: false }
-const failListeners = new Set()
+let basemapPref = (() => { try { return localStorage.getItem('nwis-basemap') || 'street' } catch { return 'street' } })()
+const baseListeners = new Set()
+const notify = () => baseListeners.forEach((fn) => fn({ failed: tileState.failed, pref: basemapPref }))
 function onTileLoad() { tileState.loads++ }
 function onTileError() {
   tileState.errors++
   if (!tileState.failed && tileState.loads === 0 && tileState.errors >= 3) {
     tileState.failed = true
-    failListeners.forEach((fn) => fn(true))
+    notify()
   }
 }
-function useTilesFailed() {
-  const [failed, setFailed] = useState(tileState.failed)
-  useEffect(() => { failListeners.add(setFailed); return () => failListeners.delete(setFailed) }, [])
-  return failed
+export function setBasemap(pref) {
+  basemapPref = pref
+  try { localStorage.setItem('nwis-basemap', pref) } catch { /* private mode */ }
+  notify()
+}
+function useBasemap() {
+  const [state, setState] = useState({ failed: tileState.failed, pref: basemapPref })
+  useEffect(() => { baseListeners.add(setState); return () => baseListeners.delete(setState) }, [])
+  return { ...state, simple: state.failed || state.pref === 'simple' }
 }
 
 export function BaseMap({ center = ASSAM_CENTER, zoom = 9, children, onClick, style, className }) {
-  const { resolved } = useTheme()
-  const failed = useTilesFailed()
+  const { simple } = useBasemap()
   return (
     <MapContainer center={center} zoom={zoom} minZoom={2} maxBounds={WORLD_BOUNDS} maxBoundsViscosity={0.8} worldCopyJump={false}
       className={className} style={{ height: '100%', width: '100%', ...style }} zoomControl preferCanvas>
-      {!failed && <TileLayer key={resolved} url={TILES[resolved]} attribution={ATTR} subdomains="abcd" maxZoom={19} noWrap
+      {!simple && <TileLayer url={TILE_URL} attribution={TILE_ATTR} maxZoom={19} noWrap
         eventHandlers={{ tileerror: onTileError, tileload: onTileLoad }} />}
-      {failed && <VectorBasemap />}
+      {simple && <VectorBasemap />}
       {onClick && <ClickHandler onClick={onClick} />}
       {children}
     </MapContainer>
@@ -54,6 +60,7 @@ export function BaseMap({ center = ASSAM_CENTER, zoom = 9, children, onClick, st
 /** Buttons to jump between world, India and the Assam oil fields. */
 export function ViewButtons({ extra }) {
   const map = useMap()
+  const { simple, failed } = useBasemap()
   const ref = useRef(null)
   // Stop drags and wheel zoom starting on the buttons. Clicks are filtered in ClickHandler
   // (blocking them here would also hide them from React).
@@ -68,6 +75,11 @@ export function ViewButtons({ extra }) {
       <button className="chip" onClick={() => go(WORLD_VIEW)}>World</button>
       <button className="chip" onClick={() => go(INDIA_VIEW)}>India</button>
       <button className="chip" onClick={() => go(ASSAM_VIEW)}>Assam oil fields</button>
+      {!failed && (
+        <button className="chip" onClick={() => setBasemap(simple ? 'street' : 'simple')} title="Switch between the online street map and the built-in map">
+          {simple ? 'Street map' : 'Simple map'}
+        </button>
+      )}
       {extra}
     </div>
   )

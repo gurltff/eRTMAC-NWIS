@@ -29,7 +29,7 @@
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7;
   --grid: #e5ded2;
   --axis: #c9c0b2;
-  --map-filter: sepia(0.22) saturate(0.85) brightness(1.02);
+  --map-filter: sepia(0.2) saturate(0.7) brightness(1.03) contrast(0.95);
   --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --radius: 22px;
@@ -53,7 +53,7 @@
     --info-bg: rgba(57, 135, 229, 0.16); --info-ink: #9cc3f2;
     --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9;
     --grid: #2e2a26; --axis: #45403a;
-    --map-filter: none;
+    --map-filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.5);
   }
 }
 :root[data-theme="dark"] {
@@ -72,7 +72,7 @@
   --info-bg: rgba(57, 135, 229, 0.16); --info-ink: #9cc3f2;
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9;
   --grid: #2e2a26; --axis: #45403a;
-  --map-filter: none;
+  --map-filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.85) saturate(0.5);
 }
 
 /* ------------------------------------------------------------------ */
