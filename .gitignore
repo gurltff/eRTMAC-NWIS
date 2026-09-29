@@ -4,7 +4,7 @@ __pycache__/
 .pytest_cache/
 node_modules/
 frontend/dist/
-backend/*.db
+backend/*.db*
 backend/uploads/
 data/raw/*
 !data/raw/README.md

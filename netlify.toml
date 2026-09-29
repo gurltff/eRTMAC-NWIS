@@ -1,0 +1,5 @@
+# Hosted demo: static build where the backend logic runs in the browser.
+[build]
+  base = "frontend"
+  command = "npm run build:demo"
+  publish = "dist"

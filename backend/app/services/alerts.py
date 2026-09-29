@@ -145,8 +145,9 @@ def evaluate(active: dict, offset_events: list[OffsetEvent], n_offset_wells: int
             "wells": sorted(g.wells),
             "event_count": len(g.events),
             "method": g.method,
-            "title": f"{LABELS.get(g.event_type)} expected in {g.formation or 'this interval'} "
-                     f"at {round(g.expected_min_m)}–{round(g.expected_max_m)} m",
+            "title": f"{LABELS.get(g.event_type)} expected in {g.formation or 'this interval'} at "
+                     + (f"{round(g.expected_min_m)} m" if round(g.expected_min_m) == round(g.expected_max_m)
+                        else f"{round(g.expected_min_m)}–{round(g.expected_max_m)} m"),
             "message": f"{len(g.events)} {LABELS.get(g.event_type, '').lower()} event(s) in {len(g.wells)} offset well(s): "
                        + ", ".join(sorted(g.wells)[:4]) + ".",
             "recommendation": RECOMMENDATIONS.get(g.event_type, "").format(depth=round(g.expected_min_m)),

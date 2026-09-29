@@ -188,8 +188,10 @@ def rule_extract(text: str) -> dict:
     # Body text only: drop 'Key: value' header lines, then join wrapped lines into sentences.
     header_rx = re.compile(r"^\s*(well( name)?|field|operator|rig|report date|date|latitude|longitude|lat|lon|total depth|td|"
                            r"[A-Za-z ]{3,30}\btop)\s*:", re.I)
-    body_lines = [ln for ln in text.splitlines() if not header_rx.match(ln)]
-    body = re.sub(r"\s*\n\s*", " ", "\n".join(body_lines))
+    body_lines = [ln.strip() for ln in text.splitlines() if ln.strip() and not header_rx.match(ln)]
+    # Short lines without end punctuation are headings: close them so they don't glue onto the next sentence.
+    body_lines = [ln + "." if len(ln) < 60 and not re.search(r"[.!?:;,]$", ln) else ln for ln in body_lines]
+    body = " ".join(body_lines)
     sentences = [x.strip() for x in re.split(r"(?<=[.!?])\s+", body) if x.strip()]
     events, lessons = [], []
     for i, s in enumerate(sentences):

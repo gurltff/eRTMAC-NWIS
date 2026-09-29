@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-change-me-please-use-a-long-random-string}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    volumes:
+      - nwis-db:/app/backend/db
+      - ./data/raw:/app/data/raw:ro
+    ports: ["8000:8000"]
+  frontend:
+    build: { context: ., dockerfile: frontend/Dockerfile }
+    depends_on: [backend]
+    ports: ["8080:80"]
+volumes:
+  nwis-db:

@@ -60,7 +60,7 @@ def flooding(lat: float, lon: float, terrain: dict) -> dict:
 def offset_problem(key: str, label: str, types: tuple, lat: float, lon: float, events_by_well: dict, extra_why: str) -> dict:
     near = wells_within(lat, lon, 10_000)
     if not near:
-        return {"key": key, "label": label, "score": 30, "level": "Medium",
+        return {"key": key, "label": label, "score": 40, "level": "Medium",
                 "why": ["No offset wells within 10 km – unknown, treat with care", extra_why]}
     n_events = sum(1 for w, _ in near for e in events_by_well.get(w["id"], []) if e["event_type"] in types)
     per_well = n_events / len(near)
