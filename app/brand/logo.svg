@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#2b2623"/>
+  <!-- map pin = the well location -->
+  <path d="M31.6 9.5c-6.4.2-11.3 5.1-11.1 11.3.2 6.9 7.6 13.4 11.3 18.6 3.9-5.3 11.4-11.8 11.2-18.9-.2-6.1-5-11.2-11.4-11z" stroke="#f3e6b5" stroke-width="3.2" stroke-linejoin="round"/>
+  <circle cx="31.7" cy="20.6" r="3.4" fill="#f3e6b5"/>
+  <!-- borehole going down through the rock layers -->
+  <path d="M31.8 39.6v14.6" stroke="#f3e6b5" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M10.5 46.2c5.2-2.3 9.4 2.1 14.8.2M38.6 45.9c5-1.9 9.6 2.3 14.9-.1" stroke="#c9a56a" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M12.2 53.4c4.4-1.6 8.6 1.4 13.2-.1M38.3 53.2c4.8-1.7 9.1 1.7 13.6 0" stroke="#c9a56a" stroke-width="2.6" stroke-linecap="round" opacity=".75"/>
+  <!-- the offset (nearby) well -->
+  <circle cx="50.4" cy="23.8" r="3.1" fill="#eb6834"/>
+</svg>

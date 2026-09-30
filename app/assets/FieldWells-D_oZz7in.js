@@ -1,4 +1,4 @@
-import{m as S,i as T,u as b,r as p,j as e,L as k,f,c as A,C as L}from"./index-Begj--Bt.js";import{EventsTable as E}from"./OffsetPage-OV72-FGY.js";import{u as F}from"./useFieldWell-CxpOQIce.js";import{S as H}from"./sparkles-CCgI2a64.js";import"./Correlation-Qz6FvmVQ.js";import"./MapBits-Dpm1gfN0.js";import"./WellBits-DxNbQXGR.js";/**
+import{m as S,i as T,u as b,r as p,j as e,L as k,f,c as A,C as L}from"./index--7oM0p7n.js";import{EventsTable as E}from"./OffsetPage-FrAkMIut.js";import{u as F}from"./useFieldWell-B58Fy-jP.js";import{S as H}from"./sparkles-DorD4BzS.js";import"./Correlation-CWeY3Yev.js";import"./MapBits-DZN6v_4-.js";import"./WellBits-D0vK521t.js";/**
  * @license lucide-react v1.48.0 - ISC
  *
  * This source code is licensed under the ISC license.

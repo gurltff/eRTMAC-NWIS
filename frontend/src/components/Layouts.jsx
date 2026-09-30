@@ -8,13 +8,8 @@ import { useTheme } from '../context/ThemeContext'
 import { SampleBadge } from './ui'
 
 export function BrandMark({ size = 34 }) {
-  return (
-    <div className="brand-mark" style={{ width: size, height: size }}>
-      <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-        <path d="M12 3 L17 21 H7 Z" /><path d="M9.2 14 H14.8" /><path d="M10.4 9 H13.6" />
-      </svg>
-    </div>
-  )
+  // Pin (location) + borehole through rock layers (drilling) + a nearby well dot.
+  return <img src="./brand/logo.svg" width={size} height={size} alt="eRTMAC NWIS" style={{ borderRadius: size * 0.25, display: 'block' }} />
 }
 
 export function ThemeButton({ className = 'icon-btn' }) {
