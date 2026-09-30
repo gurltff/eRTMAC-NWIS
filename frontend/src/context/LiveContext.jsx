@@ -44,11 +44,12 @@ export function LiveProvider({ children }) {
     return () => { alive = false; close(); setConnected(false) }
   }, [user, toast])
 
+  const dismiss = useCallback((id) => setToasts((xs) => xs.filter((x) => x.id !== id)), [])
   const subscribe = useCallback((fn) => { listeners.current.add(fn); return () => listeners.current.delete(fn) }, [])
   const send = useCallback((msg) => sendRef.current && sendRef.current(msg), [])
 
   return (
-    <LiveCtx.Provider value={{ positions, depths, breaches, wellAlerts, toasts, toast, connected, subscribe, send }}>
+    <LiveCtx.Provider value={{ positions, depths, breaches, wellAlerts, toasts, toast, dismiss, connected, subscribe, send }}>
       {children}
     </LiveCtx.Provider>
   )

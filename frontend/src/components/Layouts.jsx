@@ -22,11 +22,11 @@ export function ThemeButton({ className = 'icon-btn' }) {
 }
 
 export function Toasts() {
-  const { toasts } = useLive()
+  const { toasts, dismiss } = useLive()
   return (
     <div className="toasts" aria-live="polite">
       {toasts.map((t) => (
-        <div key={t.id} className={`toast ${t.tone || ''}`}>
+        <div key={t.id} className={`toast ${t.tone || ''}`} onClick={() => dismiss(t.id)} role="button" title="Tap to close">
           <div>
             <div style={{ fontWeight: 600 }}>{t.title}</div>
             {t.body && <div className="small ink2 mt-4">{t.body}</div>}

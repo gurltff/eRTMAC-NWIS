@@ -64,7 +64,7 @@ export default function MapPage() {
         </div>
       )}
       <div className="map-page">
-        <BaseMap center={INDIA_VIEW.center} zoom={INDIA_VIEW.zoom} onClick={(lat, lon) => setPoint({ lat, lon })}>
+        <BaseMap center={INDIA_VIEW.center} zoom={window.innerWidth < 720 ? 4 : INDIA_VIEW.zoom} onClick={(lat, lon) => setPoint({ lat, lon })}>
           <ViewButtons />
           <DataRegionCallout count={data.wells.length} />
           <FocusPoint point={point} minZoom={10} />
@@ -126,6 +126,23 @@ export default function MapPage() {
           </>
         } />
       </div>
+      <details className="map-key-mobile"><summary>Map key</summary>
+          <Legend title="Map key" items={[
+            ...Object.values(WELL_STYLE).map((s) => ({ label: s.label, color: s.color })),
+            { label: 'Candidate site', color: 'var(--ink)', shape: 'diamond' },
+            { label: 'Untapped spot (model)', color: '#eda100' },
+            { label: ZONE_STYLE.protected_area.label, color: ZONE_STYLE.protected_area.color, shape: 'area' },
+            { label: ZONE_STYLE.reserved_forest.label, color: ZONE_STYLE.reserved_forest.color, shape: 'area' },
+            { label: ZONE_STYLE.wetland.label, color: ZONE_STYLE.wetland.color, shape: 'area' },
+            { label: 'Restricted / urban', color: ZONE_STYLE.restricted.color, shape: 'area' },
+          ]} />
+          {on.heat && (
+            <div className="card tight mt-8" style={{ padding: 10 }}>
+              <div className="tiny muted">Oil potential (model score 35 → 100)</div>
+              <div className="row gap-4 mt-4">{HEAT_RAMP.map((c) => <span key={c} style={{ flex: 1, height: 8, background: c, borderRadius: 2 }} />)}</div>
+            </div>
+          )}
+        </details>
     </div>
   )
 }
