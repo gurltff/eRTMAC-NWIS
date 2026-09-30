@@ -137,11 +137,11 @@ for head, val in rows:
     h = 92 if 'Title' in head else 62
     text(s, 70, y, 900, h, [[('• ', {'bold': True}), (head, {'bold': True}), (val, {'bold': False, 'color': NAVY})]], size=26)
     y += h + 8
-s.shapes.add_picture(APP_LOGO, Pt(1075), Pt(275), Pt(230))
-text(s, 985, 520, 410, 90, [[('eRTMAC NWIS', {'bold': True, 'size': 30, 'font': 'Georgia'})], [('Nearby Wells Intelligence System', {'size': 17, 'color': GREY})]], align=PP_ALIGN.CENTER)
+bulb = s.shapes.add_picture(D + 'tpl_1_1_X12.png', Pt(1010), Pt(200), Pt(342), Pt(385))
+bulb.crop_right = 0.58
 
 # ---------------------------------------------------------------- 2. Idea
-s = frame(2, 'eRTMAC NWIS')
+s = frame(2, 'IDEA TITLE: eRTMAC NWIS')
 heading(s, 40, 120, 1100, 'Proposed Solution (Describe your Idea/Solution/Prototype)')
 text(s, 60, 160, 820, 56, [[('One map-first platform that turns old offset-well reports into ', {}), ('early warnings for the well being drilled today.', {'bold': True})]], size=18)
 bullets(s, 60, 212, 800, 300, [
@@ -159,7 +159,7 @@ bullets(s, 60, 594, 800, 190, [
 ], size=16)
 picture(s, D + 'ppt/s_map.png', 885, 130, 520)
 picture(s, D + 'ppt/s_field.png', 1262, 440, h=300)
-heading(s, 885, 440, 370, 'Innovation & uniqueness', size=20)
+heading(s, 885, 440, 380, 'Innovation and uniqueness', size=19)
 bullets(s, 900, 476, 350, 270, [
     'Formation-based depth correlation, not raw depth',
     'Untapped-spot layer: ML score + confidence',
@@ -170,7 +170,7 @@ bullets(s, 900, 476, 350, 270, [
 
 # ---------------------------------------------------------------- 3. Technical approach
 s = frame(3, 'TECHNICAL APPROACH')
-heading(s, 40, 120, 800, 'Technologies used', size=22)
+heading(s, 40, 120, 800, 'Technologies to be used', size=22)
 tech = [('Frontend', 'React + Vite, Leaflet maps, Recharts, light/dark theme, PWA-style field view'),
         ('Backend', 'Python FastAPI, WebSockets (live tracking & alerts), JWT roles: driller / engineer / admin'),
         ('Data', 'SQLite → PostgreSQL + PostGIS in production; GEM tracker, Volve DDR, GSI Bhukosh, SoilGrids, WDPA, NASA GLC'),
@@ -182,7 +182,7 @@ for k, v in tech:
     text(s, 60, y, 150, 50, [[(k, {'bold': True})]], size=16, color=SAND, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
     text(s, 222, y, 560, 54, v, size=14.5, anchor=MSO_ANCHOR.MIDDLE)
     y += 60
-heading(s, 40, 470, 800, 'Methodology & process (working prototype)', size=22)
+heading(s, 40, 470, 800, 'Methodology and process for implementation', size=22)
 steps = ['Ingest\nPDF / DDR / GIS', 'Extract\nOCR + LLM', 'Store\nwells, events,\nzones', 'Analyse\nML + formation\ncorrelation', 'Act\nmap, alerts,\ntracking']
 x = 60
 for i, st in enumerate(steps):
@@ -202,19 +202,19 @@ text(s, 900, 716, 470, 20, 'Live tracking: allowed zone, breach log', size=12, c
 # ---------------------------------------------------------------- 4. Feasibility
 s = frame(4, 'FEASIBILITY AND VIABILITY')
 cols = [
-    ('Feasibility of the idea', GREEN, [
+    ('Analysis of the feasibility of the idea', GREEN, [
         'Working prototype already built and deployed (web + phone view)',
         'Open-source stack – no licence cost; runs on one server or Docker',
         'Plugs into eRTMAC as a knowledge layer; public datasets exist for all layers',
         'Loaders ready for real data (GEM, Volve, Bhukosh, WDPA, SRTM)',
         '36 automated tests on geometry, alerts, APIs, extraction']),
-    ('Potential challenges & risks', ORANGE, [
+    ('Potential challenges and risks', ORANGE, [
         'Old reports are scanned, handwritten or inconsistent',
         'Real drilling data is confidential; limited training data',
         'Poor connectivity at remote rig sites',
         'False alerts reduce trust of drilling engineers',
         'Land-record and zone boundaries are not digital everywhere']),
-    ('Strategies to overcome', BLUE, [
+    ('Strategies for overcoming these challenges', BLUE, [
         'OCR + LLM with human review; rule-based fallback always available',
         'On-premise deployment inside OIL network, role-based access',
         'Offline-capable field view, built-in basemap, sync when online',
@@ -224,7 +224,7 @@ cols = [
 x = 45
 for title, c, items in cols:
     box(s, x, 130, 440, 58, fill=c)
-    text(s, x, 130, 440, 58, [[(title, {'bold': True})]], size=21, color=RGBColor(255, 255, 255), align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+    text(s, x, 130, 440, 58, [[(title, {'bold': True})]], size=18, color=RGBColor(255, 255, 255), align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
     box(s, x, 194, 440, 540, fill=RGBColor(0xFA, 0xFA, 0xFA), line=RGBColor(0xDD, 0xDD, 0xDD), lw=1)
     bullets(s, x + 16, 210, 410, 520, items, size=20, gap=20)
     x += 455
@@ -240,7 +240,7 @@ y = 162
 for k, v in aud:
     text(s, 60, y, 820, 40, [[('▸ ', {'color': ORANGE, 'bold': True}), (k + ': ', {'bold': True}), (v, {})]], size=17)
     y += 44
-heading(s, 40, 355, 900, 'Benefits of the solution', size=22)
+heading(s, 40, 355, 900, 'Benefits of the solution (social, economic, environmental)', size=22)
 ben = [('Economic', GREEN, 'Less NPT from losses, kicks and stuck pipe; faster decisions; better well placement with untapped-spot scoring'),
        ('Safety', ORANGE, 'Kick / overpressure alerts ahead of the bit; earthquake, flood and landslide checks at site selection'),
        ('Environmental', BLUE, 'No drilling inside forests, wetlands or protected areas (e.g. Baghjan 2020 lesson); breach alerts'),
@@ -276,14 +276,15 @@ refs = [
     ('Tools', ['FastAPI, React, Leaflet, scikit-learn, Tesseract OCR, Anthropic Claude API']),
 ]
 y = 128
+heading(s, 40, 118, 860, 'Details / Links of the reference and research work', size=22)
+y = 165
 for head, items in refs:
-    heading(s, 40, y, 800, head, size=21)
+    text(s, 60, y, 800, 34, [[(head, {'bold': True})]], size=19)
     y += 38
     bullets(s, 60, y, 830, 40 * len(items), items, size=15, gap=2)
     y += 24 * len(items) + 30
 box(s, 930, 130, 470, 600, fill=SAND)
-s.shapes.add_picture(APP_LOGO, Pt(1085), Pt(160), Pt(160))
-text(s, 950, 335, 430, 390, [[('Prototype', {'bold': True, 'size': 22})],
+text(s, 950, 150, 430, 560, [[('Prototype', {'bold': True, 'size': 22})],
      [('Live demo: ', {'bold': True, 'space': 10}), ('gurltff.github.io/eRTMAC-NWIS', {'color': LINK})],
      [('Code: ', {'bold': True, 'space': 6}), ('github.com/gurltff/eRTMAC-NWIS', {'color': LINK})],
      [('Demo logins: ', {'bold': True, 'space': 14}), ('engineer@nwis.demo / Engineer@123', {})],
